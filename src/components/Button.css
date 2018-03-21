@@ -1,0 +1,9 @@
+/* Button Styles */
+
+button {
+  background: blue;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 27px;
+}
