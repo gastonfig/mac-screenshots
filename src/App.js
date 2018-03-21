@@ -21,7 +21,7 @@ class App extends Component {
         mute: false,
         jpg: false,
       },
-      optionsString: ''
+      optionsString: '',
     };
 
     this.takeScreenshot = this.takeScreenshot.bind(this);
@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        { toggles &&
+        {toggles &&
           toggles.map((toggle, key) => (
             <Toggle
               key={key}
@@ -40,10 +40,9 @@ class App extends Component {
               title={toggle.title}
               value={toggle.value}
             />
-          ))
-        }
+          ))}
 
-        <Button label="Take Screenshot" onClick={this.takeScreenshot}/>
+        <Button label="Take Screenshot" onClick={this.takeScreenshot} />
       </div>
     );
   }
@@ -55,7 +54,7 @@ class App extends Component {
     newOptions[value] = checked;
 
     this.setState({
-      options: newOptions
+      options: newOptions,
     });
 
     this.updateOptionStr();
@@ -80,16 +79,16 @@ class App extends Component {
   updateOptionStr() {
     let options = [];
 
-    Object.keys(OPTIONS_MAP).forEach((key) => {
+    Object.keys(OPTIONS_MAP).forEach(key => {
       const value = this.state.options[key];
 
-      if(value) {
+      if (value) {
         options.push(OPTIONS_MAP[key]);
       }
     });
 
     this.setState({
-      optionsString: options.join('')
+      optionsString: options.join(''),
     });
   }
 }
