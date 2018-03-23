@@ -1,21 +1,29 @@
+import { parseDate } from '../utils/parseDate';
+
 const remote = window.require('electron').remote;
 const { spawn } = remote.require('child_process');
 
-function ChildProcess() {
-  this.cmdName = 'screencapture';
-  this.date = new Date();
-  this.outputLocation = '/Users/gastonfigueroa/Desktop/';
-  this.outputFileName = 'Screen Shot';
-  this.options = null;
+class ChildProcess {
+  constructor() {
+    this.cmdName = 'screencapture';
+    this.date = null;
+    this.filename = null;
+    this.outputFileName = 'Screen Shot';
+    this.outputLocation = '/Users/gastonfigueroa/Desktop/';
+    this.options = null;
+  }
+
+  spawn(options) {
+    this.date = new Date();
+    this.fileName = `${this.outputFileName} ${parseDate(this.date)}`;
+    this.options = `-${options}`;
+    var extension = 'jpg';
+
+    return spawn(this.cmdName, [
+      this.options,
+      `${this.outputLocation}${this.fileName}.${extension}`,
+    ]);
+  }
 }
-
-ChildProcess.prototype.spawn = function(options, extension = 'png') {
-  this.options = `-${options}`;
-
-  return spawn(this.cmdName, [
-    this.options,
-    this.outputLocation + this.outputFileName + '.' + extension,
-  ]);
-};
 
 export default ChildProcess;

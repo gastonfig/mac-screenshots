@@ -4,11 +4,9 @@ import './App.css';
 
 import Button from './components/Button';
 import Toggle from './components/Toggle';
+import ChildProcess from './components/SpawnScreenshots';
 
 import { OPTIONS_MAP, toggles } from './constants/data';
-
-import ChildProcess from './components/SpawnScreenshots';
-const childProcess = new ChildProcess();
 
 class App extends Component {
   constructor(props) {
@@ -23,10 +21,14 @@ class App extends Component {
       },
       optionsString: '',
     };
-
+    this.childProcess = null;
     this.takeScreenshot = this.takeScreenshot.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.updateOptionStr = this.updateOptionStr.bind(this);
+  }
+
+  componentWillMount() {
+    this.childProcess = new ChildProcess();
   }
 
   render() {
@@ -61,17 +63,17 @@ class App extends Component {
   }
 
   takeScreenshot() {
-    const spawn = childProcess.spawn(this.state.optionsString);
+    const spawn = this.childProcess.spawn(this.state.optionsString);
 
-    // spawn.stdout.on('data', (data) => {
+    // spawn.stdout.on('data', data => {
     //   console.log(`stdout: ${data}`);
     // });
 
-    // spawn.stderr.on('data', (data) => {
-    //   console.log(`stderr: ${data}`);
-    // });
+    spawn.stderr.on('data', data => {
+      console.log(`stderr: ${data}`);
+    });
 
-    // spawn.on('close', (code) => {
+    // spawn.on('close', code => {
     //   console.log(`child process exited with code ${code}`);
     // });
   }
