@@ -10,7 +10,7 @@ const Toggle = ({ onChange, title, value }) => (
       type="checkbox"
       value={value}
     />
-    <span>{title}</span>
+    <span className="input-title">{title}</span>
   </label>
 );
 
