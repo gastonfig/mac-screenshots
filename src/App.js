@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Button from './components/Button';
+import Tabs from './components/Tabs';
 import Toggle from './components/Toggle';
 import ChildProcess from './components/SpawnScreenshots';
 
@@ -35,14 +36,27 @@ class App extends Component {
     return (
       <div className="App">
         {toggles &&
-          toggles.map((toggle, key) => (
-            <Toggle
-              key={key}
-              onChange={this.handleChange}
-              title={toggle.title}
-              value={toggle.value}
-            />
-          ))}
+          toggles.map((toggle, key) => {
+            if (toggle.type === 'toggle') {
+              return (
+                <Toggle
+                  key={key}
+                  onChange={this.handleChange}
+                  title={toggle.title}
+                  value={toggle.value}
+                />
+              );
+            } else {
+              return (
+                <Tabs
+                  key={key}
+                  onChange={this.handleChange}
+                  title={toggle.title}
+                  value={toggle.value}
+                />
+              );
+            }
+          })}
 
         <Button label="Take Screenshot" onClick={this.takeScreenshot} />
       </div>
