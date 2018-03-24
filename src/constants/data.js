@@ -1,33 +1,30 @@
-export const OPTIONS_MAP = {
-  clipboard: 'c',
-  format: 'tjpg',
-  mouse: 's',
-  mute: 'x',
-  window: 'w',
-};
-
-export const toggles = [
+export const captureOptions = [
   {
-    title: 'Allow Mouse',
+    command: 'tjpg',
+    title: 'Format',
+    type: 'tabs',
+    value: 'jpg',
+  },
+  {
+    command: 's',
+    title: 'Select with Mouse',
     type: 'toggle',
     value: 'mouse',
   },
   {
+    command: 'c',
     title: 'Save to Clipboard',
     type: 'toggle',
     value: 'clipboard',
   },
   {
-    title: 'Format',
-    type: 'segmented',
-    value: 'jpg',
-  },
-  {
+    command: 'x',
     title: 'Mute',
     type: 'toggle',
     value: 'mute',
   },
   {
+    command: 'w',
     title: 'Select Window',
     type: 'toggle',
     value: 'window',

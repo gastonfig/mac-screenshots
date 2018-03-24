@@ -10,17 +10,15 @@ class ChildProcess {
     this.filename = null;
     this.outputFileName = 'Screen Shot';
     this.outputLocation = '/Users/gastonfigueroa/Desktop/';
-    this.options = null;
   }
 
-  spawn(options) {
+  spawn(options, isJpg) {
     this.date = new Date();
     this.fileName = `${this.outputFileName} ${parseDate(this.date)}`;
-    this.options = `-${options}`;
-    var extension = 'jpg';
+    var extension = isJpg ? 'jpg' : 'png';
 
     return spawn(this.cmdName, [
-      this.options,
+      ...options,
       `${this.outputLocation}${this.fileName}.${extension}`,
     ]);
   }
