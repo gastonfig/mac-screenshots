@@ -6,7 +6,8 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   border-bottom: 1px solid #eee;
-  padding: 13px 10px;
+  padding-bottom: 13px;
+  padding-top: 13px;
 }
 
 .input-label:hover {

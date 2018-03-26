@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Button from './components/Button';
+import RadioGroup from './components/RadioGroup';
 import Tabs from './components/Tabs';
 import Toggle from './components/Toggle';
 import ChildProcess from './components/SpawnScreenshots';
 
-import { captureOptions } from './constants/data';
+import { captureOptions, targetRadioOptions } from './constants/data';
 
 class App extends Component {
   constructor(props) {
@@ -16,15 +17,18 @@ class App extends Component {
     this.state = {
       options: {
         clipboard: false,
-        mouse: false,
         mute: false,
         jpg: false,
+        mouse: false,
+        window: false,
       },
       selectedOptions: '',
     };
     this.childProcess = null;
+    this.handleRadioChange = this.handleRadioChange.bind(this);
+    this.handleToggleChange = this.handleToggleChange.bind(this);
     this.takeScreenshot = this.takeScreenshot.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.updateOptions = this.updateOptions.bind(this);
     this.updateSelectedOptions = this.updateSelectedOptions.bind(this);
   }
 
@@ -41,34 +45,58 @@ class App extends Component {
     return (
       <div className="App">
         {captureOptions &&
-          captureOptions.map((toggle, key) => {
-            const Component = this.components[toggle.type];
-            return (
-              <Component
-                key={key}
-                onChange={this.handleChange}
-                title={toggle.title}
-                value={toggle.value}
-              />
-            );
-          })}
+          captureOptions
+            .filter(toggle => toggle.type !== 'radio')
+            .map((toggle, key) => {
+              const Component = this.components[toggle.type];
+              return (
+                <Component
+                  key={key}
+                  onChange={this.handleToggleChange}
+                  title={toggle.title}
+                  value={toggle.value}
+                />
+              );
+            })}
+
+        <RadioGroup
+          onChange={this.handleRadioChange}
+          options={targetRadioOptions}
+        />
 
         <Button label="Take Screenshot" onClick={this.takeScreenshot} />
       </div>
     );
   }
 
-  handleChange(e) {
+  handleRadioChange(e) {
+    const { value } = e.target;
+    const newOptions = { ...this.state.options };
+
+    targetRadioOptions
+      .filter(target => target.value !== 'screen')
+      .forEach(target => {
+        newOptions[target.value] = value === target.value;
+      });
+
+    this.updateOptions(newOptions);
+  }
+
+  handleToggleChange(e) {
     const { checked, value } = e.target;
-    const { options } = this.state;
-    const newOptions = options;
+    const newOptions = { ...this.state.options };
     newOptions[value] = checked;
 
-    this.setState({
-      options: newOptions,
-    });
+    this.updateOptions(newOptions);
+  }
 
-    this.updateSelectedOptions();
+  updateOptions(newOptions) {
+    this.setState(
+      {
+        options: newOptions,
+      },
+      this.updateSelectedOptions,
+    );
   }
 
   takeScreenshot() {
@@ -92,7 +120,6 @@ class App extends Component {
     const filteredOptions = captureOptions.filter(option => {
       return this.state.options[option.value];
     });
-
     const options = filteredOptions.map(option => `-${option.command}`);
 
     this.setState({

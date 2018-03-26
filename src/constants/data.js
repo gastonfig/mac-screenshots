@@ -6,12 +6,6 @@ export const captureOptions = [
     value: 'jpg',
   },
   {
-    command: 's',
-    title: 'Select with Mouse',
-    type: 'toggle',
-    value: 'mouse',
-  },
-  {
     command: 'c',
     title: 'Save to Clipboard',
     type: 'toggle',
@@ -24,9 +18,33 @@ export const captureOptions = [
     value: 'mute',
   },
   {
+    command: 's',
+    title: 'Select with Mouse',
+    type: 'radio',
+    value: 'mouse',
+  },
+  {
     command: 'w',
-    title: 'Select Window',
-    type: 'toggle',
+    title: 'Window',
+    type: 'radio',
+    value: 'window',
+  },
+];
+
+export const targetRadioOptions = [
+  {
+    defaultChecked: true,
+    title: 'Screen',
+    value: 'screen',
+  },
+  {
+    defaultChecked: false,
+    title: 'Mouse',
+    value: 'mouse',
+  },
+  {
+    defaultChecked: false,
+    title: 'Window',
     value: 'window',
   },
 ];
