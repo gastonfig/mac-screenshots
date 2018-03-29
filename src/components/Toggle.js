@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Toggle.css';
 
 const Toggle = ({ onChange, title, value }) => (
-  <label className="row input-label">
+  <label className="input-label">
     <input
       className="toggle"
       onChange={onChange}

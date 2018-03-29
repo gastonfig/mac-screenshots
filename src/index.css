@@ -5,3 +5,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.row {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.row:hover {
+  background: #F4F4F4;
+}

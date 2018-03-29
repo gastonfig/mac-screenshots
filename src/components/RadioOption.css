@@ -1,0 +1,44 @@
+/* Input Radio Styles */
+
+.input-radio {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.input-radio__radio {
+  -webkit-appearance: none;
+  flex: 1;
+  position: absolute;
+}
+
+/* Divider lines */
+.input-radio:not(:first-child)::after {
+  background: #333;
+  content: '';
+  height: 100%;
+  position: absolute;
+  width: 2px;
+}
+
+.input-radio:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.input-radio:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+.input-radio__radio:checked + span {
+  background: #333;
+  color: #fff;
+}
+
+.input-radio__title {
+  flex: 1;
+  font-size: 12px;
+  padding: 12px 0px;
+}

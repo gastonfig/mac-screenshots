@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Tabs.css';
 
 const Tabs = ({ onChange, title, value }) => (
-  <label className="row input-label input-tabs">
+  <label className="input-label input-tabs">
     <span>
       <input
         className="tabs"

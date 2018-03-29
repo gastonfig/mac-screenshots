@@ -1,0 +1,10 @@
+/* Radio Group Styles */
+
+.radio-group {
+  border: 2px solid #333;
+  border-radius: 24px;
+  display: flex;
+  height: 34px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
