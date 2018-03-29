@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './RadioGroup.css';
 
 import RadioOption from './RadioOption';
@@ -18,6 +18,11 @@ const RadioGroup = ({ onChange, options }) => {
       ))}
     </div>
   );
+};
+
+RadioGroup.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired,
 };
 
 export default RadioGroup;

@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './RadioOption.css';
 
 const RadioOption = ({ defaultChecked, onChange, title, value }) => {
@@ -16,6 +16,13 @@ const RadioOption = ({ defaultChecked, onChange, title, value }) => {
       <span className="input-radio__title">{title}</span>
     </label>
   );
+};
+
+RadioOption.propTypes = {
+  defaultChecked: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default RadioOption;
