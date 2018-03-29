@@ -11,7 +11,7 @@ import ChildProcess from './components/SpawnScreenshots';
 
 import { captureOptions, targetRadioOptions } from './constants/data';
 
-const { dialog } = window.require('electron').remote;
+const { app, dialog } = window.require('electron').remote;
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class App extends Component {
         window: false,
       },
       selectedOptions: '',
-      directory: '/Users/gastonfigueroa',
+      directory: app.getPath('desktop'),
     };
     this.childProcess = null;
     this.handleRadioChange = this.handleRadioChange.bind(this);

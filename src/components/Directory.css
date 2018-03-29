@@ -20,8 +20,8 @@
   background: none;
   border: 1px solid #333;
   border-radius: 4px;
-  outline: none;
   opacity: 0;
+  outline: none;
 }
 
 .directory:hover .directory--button {
