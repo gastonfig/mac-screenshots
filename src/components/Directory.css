@@ -1,0 +1,34 @@
+/* Directory styles */
+
+.directory {
+  align-items: center;
+  background: #eee;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.directory--text {
+  cursor: default;
+  font-size: 12px;
+  opacity: 0.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.directory--button {
+  background: none;
+  border: 1px solid #333;
+  border-radius: 4px;
+  outline: none;
+  opacity: 0;
+}
+
+.directory:hover .directory--button {
+  opacity: 1;
+}
+
+.directory--button:hover {  
+  background: #333;
+  color: #fff;
+}

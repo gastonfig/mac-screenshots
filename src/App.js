@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import Button from './components/Button';
+import ShootButton from './components/ShootButton';
+import Directory from './components/Directory';
 import RadioGroup from './components/RadioGroup';
 import Tabs from './components/Tabs';
 import Toggle from './components/Toggle';
 import ChildProcess from './components/SpawnScreenshots';
 
 import { captureOptions, targetRadioOptions } from './constants/data';
+
+const { dialog } = window.require('electron').remote;
 
 class App extends Component {
   constructor(props) {
@@ -23,9 +26,11 @@ class App extends Component {
         window: false,
       },
       selectedOptions: '',
+      directory: '/Users/gastonfigueroa',
     };
     this.childProcess = null;
     this.handleRadioChange = this.handleRadioChange.bind(this);
+    this.handleDirectoryClick = this.handleDirectoryClick.bind(this);
     this.handleToggleChange = this.handleToggleChange.bind(this);
     this.takeScreenshot = this.takeScreenshot.bind(this);
     this.updateOptions = this.updateOptions.bind(this);
@@ -66,11 +71,31 @@ class App extends Component {
           />
         </div>
 
+        <Directory
+          directory={this.state.directory}
+          onClick={this.handleDirectoryClick}
+        />
+
         <div className="row">
-          <Button label="Take Screenshot" onClick={this.takeScreenshot} />
+          <ShootButton label="Take Screenshot" onClick={this.takeScreenshot} />
         </div>
       </div>
     );
+  }
+
+  handleDirectoryClick() {
+    const oldDirectory = this.state.directory;
+    const dialogDirectory = dialog.showOpenDialog({
+      buttonLabel: 'Select',
+      defaultPath: oldDirectory,
+      properties: ['openDirectory'],
+      title: 'Select a folder',
+    });
+    const directory = dialogDirectory ? dialogDirectory[0] : oldDirectory;
+
+    this.setState({
+      directory: `${directory}/`,
+    });
   }
 
   handleRadioChange(e) {
@@ -104,8 +129,7 @@ class App extends Component {
   }
 
   takeScreenshot() {
-    const { selectedOptions, options } = this.state;
-    const directory = '/Users/gastonfigueroa/Documents/';
+    const { directory, selectedOptions, options } = this.state;
     const spawn = this.childProcess.spawn(
       selectedOptions,
       options.jpg,
