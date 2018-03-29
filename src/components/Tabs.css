@@ -5,7 +5,7 @@
 
 .tabs {
   -webkit-appearance: none;
-  background: #EFEFEF;
+  background: #333;
   border: 2px solid #333;
   border-radius: 14px;
   display: flex;
