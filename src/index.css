@@ -3,14 +3,15 @@ body {
   font-size: 14px;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }
 
 .row {
-  padding-left: 10px;
-  padding-right: 10px;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  padding: 13px 10px;
 }
 
-.row:hover {
+.hover-highlight:hover {
   background: #F4F4F4;
 }
