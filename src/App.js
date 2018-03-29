@@ -105,7 +105,12 @@ class App extends Component {
 
   takeScreenshot() {
     const { selectedOptions, options } = this.state;
-    const spawn = this.childProcess.spawn(selectedOptions, options.jpg);
+    const directory = '/Users/gastonfigueroa/Documents/';
+    const spawn = this.childProcess.spawn(
+      selectedOptions,
+      options.jpg,
+      directory,
+    );
 
     // spawn.stdout.on('data', data => {
     //   console.log(`stdout: ${data}`);

@@ -9,12 +9,13 @@ class ChildProcess {
     this.date = null;
     this.filename = null;
     this.outputFileName = 'Screen Shot';
-    this.outputLocation = '/Users/gastonfigueroa/Desktop/';
+    this.outputLocation;
   }
 
-  spawn(options, isJpg) {
+  spawn(options, isJpg, directory) {
     this.date = new Date();
     this.fileName = `${this.outputFileName} ${parseDate(this.date)}`;
+    this.outputLocation = directory;
     var extension = isJpg ? 'jpg' : 'png';
 
     return spawn(this.cmdName, [
