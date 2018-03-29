@@ -2,6 +2,8 @@
 
 A Mac app for taking screenshots. Built with Electron and React.js.
 
+![Screenshots](screenshots.png)
+
 ## Local Dev Setup
 - Install dependencies
 ```
