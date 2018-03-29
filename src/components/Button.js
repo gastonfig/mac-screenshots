@@ -4,7 +4,7 @@ import './Button.css';
 
 const Button = ({ label, onClick }) => (
   <button className="button" onClick={onClick}>
-    {label}
+    <span className="button--label">{label}</span>
   </button>
 );
 
