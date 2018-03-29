@@ -50,20 +50,21 @@ class App extends Component {
             .map((toggle, key) => {
               const Component = this.components[toggle.type];
               return (
-                <Component
-                  key={key}
-                  onChange={this.handleToggleChange}
-                  title={toggle.title}
-                  value={toggle.value}
-                />
+                <div className="row" key={key}>
+                  <Component
+                    onChange={this.handleToggleChange}
+                    title={toggle.title}
+                    value={toggle.value}
+                  />
+                </div>
               );
             })}
-
-        <RadioGroup
-          onChange={this.handleRadioChange}
-          options={targetRadioOptions}
-        />
-
+        <div className="row">
+          <RadioGroup
+            onChange={this.handleRadioChange}
+            options={targetRadioOptions}
+          />
+        </div>
         <Button label="Take Screenshot" onClick={this.takeScreenshot} />
       </div>
     );

@@ -1,6 +1,6 @@
 /* Radio Group Styles */
 
-.radio-group--container {
+.radio-group {
   border: 2px solid #333;
   border-radius: 24px;
   display: flex;

@@ -6,7 +6,7 @@ import RadioOption from './RadioOption';
 
 const RadioGroup = ({ onChange, options }) => {
   return (
-    <div className="row radio-group--container">
+    <div className="radio-group">
       {options.map((option, key) => (
         <RadioOption
           defaultChecked={option.defaultChecked}

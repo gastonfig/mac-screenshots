@@ -19,7 +19,7 @@ export const captureOptions = [
   },
   {
     command: 's',
-    title: 'Select with Mouse',
+    title: 'Mouse',
     type: 'radio',
     value: 'mouse',
   },

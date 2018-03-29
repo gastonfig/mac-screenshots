@@ -7,6 +7,10 @@ body {
 }
 
 .row {
-  margin-left: 10px;
-  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.row:hover {
+  background: #F4F4F4;
 }
