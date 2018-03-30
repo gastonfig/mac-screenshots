@@ -1,15 +1,16 @@
 /* Directory styles */
-
 .directory {
   align-items: center;
   background: #eee;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: auto;
+  padding: 5px 8px;
 }
 
 .directory--text {
   cursor: default;
-  font-size: 12px;
+  font-size: 10px;
   opacity: 0.4;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -18,8 +19,9 @@
 
 .directory--button {
   background: none;
-  border: 1px solid #333;
+  border: none;
   border-radius: 4px;
+  font-size: 10px;
   opacity: 0;
   outline: none;
 }

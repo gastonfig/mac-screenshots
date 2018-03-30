@@ -71,14 +71,14 @@ class App extends Component {
           />
         </div>
 
+        <div className="row">
+          <ShootButton label="Take Screenshot" onClick={this.takeScreenshot} />
+        </div>
+
         <Directory
           directory={this.state.directory}
           onClick={this.handleDirectoryClick}
         />
-
-        <div className="row">
-          <ShootButton label="Take Screenshot" onClick={this.takeScreenshot} />
-        </div>
       </div>
     );
   }
