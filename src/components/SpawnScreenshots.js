@@ -7,19 +7,21 @@ class ChildProcess {
   constructor() {
     this.cmdName = 'screencapture';
     this.date = null;
+    this.extension = null;
     this.filename = null;
     this.outputFileName = 'Screen Shot';
-    this.outputLocation = '/Users/gastonfigueroa/Desktop/';
+    this.outputLocation = null;
   }
 
-  spawn(options, isJpg) {
+  spawn(options, isJpg, directory) {
     this.date = new Date();
+    this.extension = isJpg ? 'jpg' : 'png';
     this.fileName = `${this.outputFileName} ${parseDate(this.date)}`;
-    var extension = isJpg ? 'jpg' : 'png';
+    this.outputLocation = directory;
 
     return spawn(this.cmdName, [
       ...options,
-      `${this.outputLocation}${this.fileName}.${extension}`,
+      `${this.outputLocation}${this.fileName}.${this.extension}`,
     ]);
   }
 }
