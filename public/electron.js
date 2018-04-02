@@ -1,8 +1,4 @@
-const electron = require('electron');
-// Module to control application life.
-const app = electron.app;
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
+const { app, BrowserWindow, Tray } = require('electron');
 
 const path = require('path');
 const url = require('url');
@@ -11,17 +7,25 @@ const url = require('url');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+let tray;
+
 function createWindow() {
+  // Create the tray
+  const icon = path.join(__dirname, '/assets/icon.png');
+  tray = new Tray(icon);
+
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 250, height: 330 });
+  mainWindow = new BrowserWindow({
+    frame: false,
+    height: 330,
+    show: false,
+    transparent: true,
+    width: 250,
+    x: 400,
+    y: 0,
+  });
 
   // and load the index.html of the app.
-  // mainWindow.loadURL(url.format({
-  //   pathname: path.join(__dirname, 'index.html'),
-  //   protocol: 'file:',
-  //   slashes: true
-  // }))
-  // mainWindow.loadURL('http://localhost:3000');
   const startUrl =
     process.env.ELECTRON_START_URL ||
     url.format({
@@ -41,7 +45,29 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  tray.on('click', () => {
+    toggleWindow();
+  });
 }
+const toggleWindow = () => {
+  if (mainWindow.isVisible()) {
+    mainWindow.hide();
+  } else {
+    showWindow();
+  }
+};
+
+const showWindow = () => {
+  const trayRect = tray.getBounds();
+  const { x, width: trayWidth, y } = trayRect;
+  const windowRect = mainWindow.getBounds();
+  const { width: windowWidth } = windowRect;
+  const xPos = x - windowWidth / 2 + trayWidth / 2;
+
+  mainWindow.setPosition(xPos, y, false);
+  mainWindow.show();
+};
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -64,6 +90,3 @@ app.on('activate', function() {
     createWindow();
   }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
