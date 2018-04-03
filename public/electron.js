@@ -44,25 +44,34 @@ function createWindow() {
     mainWindow = null;
   });
 
-  tray.on('click', () => {
-    toggleWindow();
+  mainWindow.on('blur', mainWindow.hide);
+
+  mainWindow.on('hide', () => {
+    tray.setHighlightMode('never');
   });
+
+  mainWindow.on('show', () => {
+    tray.setHighlightMode('always');
+  });
+
+  mainWindow.on('ready-to-show', setWindowPosition);
+
+  tray.on('click', toggleWindow);
 }
+
 const toggleWindow = () => {
   if (mainWindow.isVisible()) {
     mainWindow.hide();
   } else {
-    showWindow();
+    mainWindow.show();
   }
 };
 
-const showWindow = () => {
+const setWindowPosition = () => {
   const { x, width: trayWidth, y } = tray.getBounds();
   const { width: windowWidth } = mainWindow.getBounds();
   const xPos = x - windowWidth / 2 + trayWidth / 2;
-
   mainWindow.setPosition(xPos, y, false);
-  mainWindow.show();
 };
 
 // This method will be called when Electron has finished
