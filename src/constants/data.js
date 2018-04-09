@@ -7,13 +7,13 @@ export const captureOptions = [
   },
   {
     command: 'c',
-    title: 'Save to Clipboard',
+    title: 'Clipboard',
     type: 'toggle',
     value: 'clipboard',
   },
   {
     command: 'x',
-    title: 'Mute',
+    title: 'Silent',
     type: 'toggle',
     value: 'mute',
   },
@@ -39,7 +39,7 @@ export const targetRadioOptions = [
   },
   {
     defaultChecked: false,
-    title: 'Mouse',
+    title: 'Portion',
     value: 'mouse',
   },
   {

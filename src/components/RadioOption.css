@@ -17,7 +17,7 @@
 
 /* Divider lines */
 .input-radio:not(:first-child)::after {
-  background: #333;
+  background: #111;
   content: '';
   height: 100%;
   position: absolute;
@@ -33,12 +33,13 @@
 }
 
 .input-radio__radio:checked + span {
-  background: #333;
+  background: #111;
   color: #fff;
 }
 
 .input-radio__title {
   flex: 1;
-  font-size: 12px;
-  padding: 12px 0px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 12px 0;
 }

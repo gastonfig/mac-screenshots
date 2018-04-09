@@ -10,47 +10,46 @@
 .input-label .input-title {
   color: #ADADAD;
   letter-spacing: -.4px;
+  font-size: 13px;
   transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .toggle {
   -webkit-appearance: none;
-  background: #EFEFEF;
   border: 2px solid #ADADAD;
-  height: 28px;
+  border-radius: 12px;
+  height: 24px;
   margin: 0;
   outline: none;
   position: relative;
-  width: 46px;
+  width: 38px;
   content: '';
   display: block;
   transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border-radius: 14px;
 }
 
 .toggle::before {
   background: #ADADAD;
-  border-radius: 30px;
+  border-radius: 50%;
   content: '';
   display: block;
-  height: 22px;
+  height: 18px;
   left: 1px;
   position: absolute;
   top: 1px;
   transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  width: 22px;
+  width: 18px;
 }
 
 .toggle:checked {
-  background: #FFF;
-  border-color: #333;
+  border-color: #111;
 }
 
 .toggle:checked + .input-title {
-  color: #333;
+  color: #111;
 }
 
 .toggle:checked::before {
-  background: #333;
-  transform: translateX(18px);
+  background: #111;
+  transform: translateX(14px);
 }

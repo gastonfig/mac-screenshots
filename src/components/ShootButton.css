@@ -1,47 +1,35 @@
 /* Button Styles */
 
+.button-row {
+  padding-bottom: 24px;
+  padding-top: 24px;
+}
+
 .shootButton {
-  align-self: center;
-  background: transparent;
-  border: 4px solid red;
-  border-radius: 50%;
-  height: 20vw;
+  background: #111;
+  border: none;
+  border-radius: 24px;
+  color: #E4E4E6;
+  display: flex;
+  font-size: 11px;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: .05rem;
   outline: none;
+  padding: 13px 0;
   position: relative;
-  width: 20vw;
+  text-transform: uppercase;
+  transition: all 120ms ease-in-out;
 }
 
 .shootButton:hover {
-  border-color: #222;
-}
-
-.shootButton::after {
-  background: red;
-  border-radius: 50%;
-  content: '';
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transform: scale(0.92);
-  width: 100%;
-}
-
-.shootButton:hover::after {
-  background: #222;
-}
-
-.shootButton:active::after {
-  transform: scale(0.85);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .shootButton--label {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
+  transition: all 120ms ease-in-out;
+}
+
+.shootButton:hover .shootButton--label {
+  transform: scale(1.03);
 }
