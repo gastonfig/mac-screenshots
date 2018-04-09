@@ -19,6 +19,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     frame: false,
     height: 330,
+    resizable: false,
     show: false,
     transparent: true,
     width: 250,
@@ -57,8 +58,6 @@ function createWindow() {
     tray.setImage(iconActive);
   });
 
-  mainWindow.on('ready-to-show', setWindowPosition);
-
   tray.on('click', toggleWindow);
 }
 
@@ -66,6 +65,7 @@ const toggleWindow = () => {
   if (mainWindow.isVisible()) {
     mainWindow.hide();
   } else {
+    setWindowPosition();
     mainWindow.show();
   }
 };
