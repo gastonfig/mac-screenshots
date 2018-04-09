@@ -12,6 +12,7 @@ let tray;
 function createWindow() {
   // Create the tray
   const icon = path.join(__dirname, '/assets/icon.png');
+  const iconActive = path.join(__dirname, '/assets/icon_active.png');
   tray = new Tray(icon);
 
   // Create the browser window.
@@ -48,10 +49,12 @@ function createWindow() {
 
   mainWindow.on('hide', () => {
     tray.setHighlightMode('never');
+    tray.setImage(icon);
   });
 
   mainWindow.on('show', () => {
     tray.setHighlightMode('always');
+    tray.setImage(iconActive);
   });
 
   mainWindow.on('ready-to-show', setWindowPosition);
