@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Tray } = require('electron');
 
+const isDev = require('electron-is-dev');
 const path = require('path');
 const url = require('url');
 
@@ -46,8 +47,9 @@ function createWindow() {
     mainWindow = null;
   });
 
-  // TODO: Enable only in production
-  // mainWindow.on('blur', mainWindow.hide);
+  if (!isDev) {
+    mainWindow.on('blur', mainWindow.hide);
+  }
 
   mainWindow.on('hide', () => {
     tray.setHighlightMode('never');
