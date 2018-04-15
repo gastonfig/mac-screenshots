@@ -64,15 +64,17 @@ class App extends Component {
                 </div>
               );
             })}
-        <div className="row hover-highlight">
+
+        <div className="row target-row hover-highlight">
+          <span className="input-title radio-group_label">Target</span>
           <RadioGroup
             onChange={this.handleRadioChange}
             options={targetRadioOptions}
           />
         </div>
 
-        <div className="row">
-          <ShootButton label="Take Screenshot" onClick={this.takeScreenshot} />
+        <div className="row button-row">
+          <ShootButton label="Snap Shot" onClick={this.takeScreenshot} />
         </div>
 
         <Directory

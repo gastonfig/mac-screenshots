@@ -30,7 +30,7 @@
   opacity: 1;
 }
 
-.directory--button:hover {  
-  background: #333;
+.directory--button:hover {
+  background: #111;
   color: #fff;
 }

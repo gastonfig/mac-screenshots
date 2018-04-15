@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Tray } = require('electron');
 
+const isDev = require('electron-is-dev');
 const path = require('path');
 const url = require('url');
 
@@ -18,11 +19,11 @@ function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     frame: false,
-    height: 330,
+    height: 288,
     resizable: false,
     show: false,
     transparent: true,
-    width: 250,
+    width: 186,
   });
 
   // and load the index.html of the app.
@@ -46,7 +47,9 @@ function createWindow() {
     mainWindow = null;
   });
 
-  mainWindow.on('blur', mainWindow.hide);
+  if (!isDev) {
+    mainWindow.on('blur', mainWindow.hide);
+  }
 
   mainWindow.on('hide', () => {
     tray.setHighlightMode('never');
