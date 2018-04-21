@@ -11,6 +11,10 @@ const iconHighlighted = path.join(__dirname, '/assets/icon_active.png');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+// Tracking window visibility without BrowserWindow.isVisible() as this
+// is unreliable in the macOS due occlusion state.
+let isWindowVisible = false;
+
 let tray;
 
 function createWindow() {
@@ -55,11 +59,13 @@ function createWindow() {
   mainWindow.on('hide', () => {
     tray.setHighlightMode('selection');
     tray.setImage(iconDefault);
+    isWindowVisible = false;
   });
 
   mainWindow.on('show', () => {
     tray.setHighlightMode('always');
     tray.setImage(iconHighlighted);
+    isWindowVisible = true;
   });
 
   tray.on('click', toggleWindow);
@@ -67,7 +73,7 @@ function createWindow() {
 }
 
 const toggleWindow = () => {
-  if (mainWindow.isVisible()) {
+  if (isWindowVisible) {
     mainWindow.hide();
   } else {
     setWindowPosition();
