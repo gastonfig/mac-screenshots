@@ -4,6 +4,9 @@ const isDev = require('electron-is-dev');
 const path = require('path');
 const url = require('url');
 
+const iconDefault = path.join(__dirname, '/assets/icon.png');
+const iconHighlighted = path.join(__dirname, '/assets/icon_active.png');
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -12,9 +15,7 @@ let tray;
 
 function createWindow() {
   // Create the tray
-  const icon = path.join(__dirname, '/assets/icon.png');
-  const iconActive = path.join(__dirname, '/assets/icon_active.png');
-  tray = new Tray(icon);
+  tray = new Tray(iconDefault);
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -52,16 +53,17 @@ function createWindow() {
   }
 
   mainWindow.on('hide', () => {
-    tray.setHighlightMode('never');
-    tray.setImage(icon);
+    tray.setHighlightMode('selection');
+    tray.setImage(iconDefault);
   });
 
   mainWindow.on('show', () => {
     tray.setHighlightMode('always');
-    tray.setImage(iconActive);
+    tray.setImage(iconHighlighted);
   });
 
   tray.on('click', toggleWindow);
+  tray.setPressedImage(iconHighlighted);
 }
 
 const toggleWindow = () => {
